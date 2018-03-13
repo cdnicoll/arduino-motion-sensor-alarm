@@ -1,15 +1,11 @@
-// Define Pins
+#include "Volume3.h"
 
-// uno
-int tonePin = 7;
-int redLight = 8;
-int trigPin = 9;
-int echoPin = 10;
-// nano
-//int tonePin = 0;
-//int redLight = 10;
-//int trigPin = 11;
-//int echoPin = 12;
+// Define Pins
+int tonePin = 7;  // red
+int redLight = 8; // blue
+int greenLight = 9; //orange
+int trigPin = 10;  // green
+int echoPin = 11; //orange
 int distance;
 int safeDistance;
 
@@ -20,6 +16,9 @@ void setup() {
   pinMode(trigPin, OUTPUT); // sets the trigPin as an output
   pinMode(echoPin, INPUT); // sets the echoPin to an input
   pinMode(redLight, OUTPUT);
+  pinMode(greenLight, OUTPUT);
+  
+  digitalWrite(greenLight, true);
 
   Serial.begin(9600); // Starts the serial communication
 }
@@ -49,6 +48,7 @@ void loop() {
     if (distance <= 10) {
       digitalWrite(redLight, true);
       tone(tonePin, 700, 800);
+      //vol.tone(tonePin, 440, 1023);
     } else {
       digitalWrite(redLight, false);
       noTone(tonePin);
